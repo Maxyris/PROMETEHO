@@ -1,3 +1,4 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,13 +12,86 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex align-items-center" x-data="{ open: '' }">
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('gestionConductores')" :active="request()->routeIs('gestionConductores')">
-                        {{ __('Gestion conductores') }}
-                    </x-nav-link>
+
+                    <!-- Pacientes -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="nav-link px-3 py-2 rounded hover:bg-gray-100">
+                            👥 {{ __('Pacientes') }}
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-1 w-56 bg-white shadow-md rounded-md">
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('pacientes')">
+                                Lista de Pacientes
+                            </x-nav-link>
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('pacientes/crear')">
+                                Nuevo Paciente
+                            </x-nav-link>
+                        </div>
+                    </div>
+
+                    <!-- Historial Clínico -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="nav-link px-3 py-2 rounded hover:bg-gray-100">
+                            🩺 {{ __('Historial Clínico') }}
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-1 w-56 bg-white shadow-md rounded-md">
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('historial')">
+                                Ver Historial por Paciente
+                            </x-nav-link>
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('historial/crear')">
+                                Nueva Entrada
+                            </x-nav-link>
+                        </div>
+                    </div>
+
+                    <!-- Citas -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="nav-link px-3 py-2 rounded hover:bg-gray-100">
+                            📅 {{ __('Citas') }}
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-1 w-56 bg-white shadow-md rounded-md">
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('citas/agenda')">
+                                Agenda
+                            </x-nav-link>
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('citas/crear')">
+                                Nueva Cita
+                            </x-nav-link>
+                        </div>
+                    </div>
+
+                    <!-- Seguridad -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="nav-link px-3 py-2 rounded hover:bg-gray-100">
+                            🔐 {{ __('Seguridad') }}
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-1 w-56 bg-white shadow-md rounded-md">
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('roles')">
+                                Roles y Permisos
+                            </x-nav-link>
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('politica')">
+                                Política de Privacidad
+                            </x-nav-link>
+                        </div>
+                    </div>
+
+                    <!-- Evaluación del Sistema -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="nav-link px-3 py-2 rounded hover:bg-gray-100">
+                            📈 {{ __('Evaluación del Sistema') }}
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-1 w-56 bg-white shadow-md rounded-md">
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('reportes')">
+                                Reportes
+                            </x-nav-link>
+                            <x-nav-link :href="route('registrarPaciente')" :active="request()->is('encuestas')">
+                                Encuestas de Satisfacción
+                            </x-nav-link>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -101,3 +175,5 @@
         </div>
     </div>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>

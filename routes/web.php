@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Citas\CitasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GestionConductores\GestionConductoresController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -19,5 +20,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/gestionConductores', [GestionConductoresController::class,'index'])->middleware(['auth', 'verified'])->name('gestionConductores');
+
+Route::get('/registrarPaciente', [CitasController::class,'index'])->name('registrarPaciente');
+Route::get('/nuevaCita', [CitasController::class,'index'])->name('nuevaCita');
+Route::get('/historialCitas', [CitasController::class,'index'])->name('historialCitas');
+
 
 require __DIR__.'/auth.php';
