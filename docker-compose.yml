@@ -1,0 +1,15 @@
+services:
+    app:
+      build:
+        dockerfile: Dockerfile
+      container_name: maxyk-prometeho
+      environment:
+        - APP_ENV=production
+        - APP_DEBUG=false
+      networks:
+        - maxyk-network
+      restart: unless-stopped
+      ports:
+        - "3020:80"
+networks:
+    maxyk-network:
